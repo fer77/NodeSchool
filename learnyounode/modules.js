@@ -1,15 +1,19 @@
 var fs = require('fs');
     path = require('path');
 
-
-module.exports = function (dir, ext, callback) {
+module.exports = function(dir, ext, callback) {
     fs.readdir(dir, function(err, files) {
-        files.forEach(function(list) {
-            if (path.extname(list) === ext) {
-                console.log(list);
-            }
+        if (err) {
+            
+            return callback(err);
+        }
+        files = files.filter(function (file) {
+            
+            return path.extname(file) === '.' + ext
         });
-        return callback(null, list);
+        
+        callback(null, files);
     });
 };
+
 
