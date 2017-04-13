@@ -7,6 +7,7 @@ var dir = process.argv[2];
 fs.readdir(dir, function(err, files) {
     files.forEach(function(list) {
         if (path.extname(list) === ext) {
+            
             console.log(list);
         }
     });
