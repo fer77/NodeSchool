@@ -1,5 +1,5 @@
 var net = require('net'),
-    portNumber = process.argv[2] || 8000,
+    portNumber = process.argv[2],
     date = new Date(),
     year = date.getFullYear(),
     month = date.getMonth() + 1,     // starts at 0
