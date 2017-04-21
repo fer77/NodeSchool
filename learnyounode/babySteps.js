@@ -1,11 +1,9 @@
-//* BABY STEPS *//
-//console.log(process.argv);
+var argv = process.argv,
+    total = 0;
 
-var args = process.argv;
-var total = 0;
-
-for (var i = 2; i < args.length; i++) {
-    total += Number(args[i]);
+// Write a program that accepts one or more numbers as command-line arguments and prints the sum of those numbers to the console
+for (var num = 2; num < argv.length; num++) {
+    total += Number(argv[num]);
 }
 
 console.log(total);

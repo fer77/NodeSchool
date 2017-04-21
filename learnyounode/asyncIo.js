@@ -1,14 +1,14 @@
-var fs = require('fs');
+var fs = require('fs'),
+    pathToFile = process.argv[2]; // The full path to the file to read will be provided as the first command-line argument.
 
-var  args = process.argv[2];
+// Write a program that uses a single asynchronous filesystem operation to read a file and print the number of newlines it contains to
+// the console
+fs.readFile(pathToFile, function(err, data) {
 
-// Tried running this using: fs.readFile(file, 'utf8', callback).  But could not get it to pass.
+    var newLines = data.toString().split('\n').length - 1; // collect the value from the callback function that is passed in as the 
+                                                          //second argument.
 
-fs.readFile(args, function(err, data) {
-
-    var lines = data.toString().split('\n').length - 1;
-
-    console.log(lines);
+    console.log(newLines);
 });
 
 
