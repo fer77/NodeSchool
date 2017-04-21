@@ -1,6 +1,6 @@
 var http = require('http');
-    bl = require('bl');
     url = process.argv[2];
+    bl = require('bl');
 
 // Solution using Buffer list collector or an npm package to collect the data:
 
