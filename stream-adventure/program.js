@@ -1,3 +1,8 @@
-var fs = require('fs'),
-    pathToFile = process.argv[2],
-    file = fs.createReadStream(pathToFile).pipe(process.stdout);
+var through = require('through2');
+var split = require('split');
+    process.stdin
+        .pipe(split())
+        .pipe(through2(function (buffer, encoding, next) {
+            console.dir(line.toString());
+            next();
+        }));
