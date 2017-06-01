@@ -1,6 +1,9 @@
 precision mediump float;
 
-uniform vec3 ambient, diffuse, lightDirection;
+uniform vec3 ambient;// the ambient light coefficient
+uniform vec3 diffuse;// the diffuse light coefficient
+uniform vec3 lightDirection;// the direction of the point light source (normalized)
+
 varying vec3 fragNormal;
 
 void main() {
