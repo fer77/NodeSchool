@@ -1,21 +1,29 @@
-precision mediump float;
+precision highp float;
 
 uniform sampler2D prevState;
 uniform vec2 stateSize;
-uniform float kdiffuse;
-uniform float kdamping;
+uniform float kdiffuse; //is the diffusion constant and controls the rate at which heat spreads
+uniform float kdamping; //is the damping factor which represents the rate at which heat is lost/gained
 
 float state(vec2 x) {
-  return texture2D(prevState, fract(x / stateSize)).r;
+  return texture2D(prevState, x / stateSize).r;
+}
+
+float laplacian(vec2 x) {
+  return (
+  	state(x + vec2(-1,0)) + 
+  	state(x + vec2(1,0)) + 
+  	state(x + vec2(0,1)) + 
+  	state(x + vec2(0,-1))
+  	) - 4.0 * state(x);
 }
 
 void main() {
   vec2 coord = gl_FragCoord.xy;
 
-  //TODO: Compute next state using a 5-point Laplacian stencil and the rule
+  float w = laplacian(coord);
+  float p = state(coord);
+  float y = (1.0 - kdamping) * (kdiffuse * w  + p);
 
-  float y = state(coord);
-
-
-  gl_FragColor = vec4(y,y,y,1);
+  gl_FragColor = vec4(y,y,y,y);
 }
