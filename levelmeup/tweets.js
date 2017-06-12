@@ -2,7 +2,6 @@ var level = require('level');
 
 // ISO date format will always sort our tweets in date/time order in our data store without any special work on our part.
 module.exports = function (databaseDir, date, callback) {
- // .. your code here
  var db = level(databaseDir),
      tweets = [],
      error;
